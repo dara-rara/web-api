@@ -2,9 +2,9 @@ import requests as rq
 from bs4 import BeautifulSoup
 
 
-def parse_maxidom(url):
+def parse_maxidom():
     products = []
-
+    url = 'https://www.maxidom.ru/catalog/kraski-i-emali/'
     while url:
         response = rq.get(url)
         soup = BeautifulSoup(response.text, 'lxml')
@@ -32,8 +32,6 @@ def parse_maxidom(url):
 
 
 if __name__ == "__main__":
-    start_url = 'https://www.maxidom.ru/catalog/kraski-i-emali/'
-    product_data = parse_maxidom(start_url)
-
+    product_data = parse_maxidom()
     for product in product_data:
         print(f"Товар: {product['title']}, Цена: {product['price']}")
